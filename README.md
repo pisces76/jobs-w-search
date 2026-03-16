@@ -8,6 +8,9 @@ This is a fork of [Andrej Karpathy's original project](https://github.com/karpat
 
 - **Bilingual support** — English/Chinese language toggle with translations for all 342 occupations and categories
 - **Occupation search** — Autocomplete search box to quickly find occupations by name (in English or Chinese)
+- **Highlight job found** - Highlighted the job found in treemap
+
+![Jobs visualization](html/jobs.png)
 
 ## What's here
 
