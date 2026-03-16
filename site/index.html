@@ -14,6 +14,361 @@
   --fg2: #888894;
 }
 
+/* Language toggle styles */
+.lang-toggle {
+  display: inline-flex;
+  gap: 4px;
+  padding: 4px;
+  background: var(--bg2);
+  border-radius: 6px;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.lang-toggle button {
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  border: none;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--fg2);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.lang-toggle button.active {
+  background: rgba(255,255,255,0.1);
+  color: var(--fg);
+}
+
+.lang-toggle button:hover:not(.active) {
+  background: rgba(255,255,255,0.05);
+}
+
+/* Search input styles */
+.search-input-wrapper {
+  position: relative;
+  width: 240px;
+}
+
+#searchInput {
+  width: 100%;
+  padding: 8px 12px;
+  font-size: 13px;
+  background: var(--bg2);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 6px;
+  color: var(--fg);
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+#searchInput:focus {
+  border-color: rgba(255,255,255,0.25);
+}
+
+.autocomplete-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--bg2);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 6px;
+  margin-top: 4px;
+  max-height: 240px;
+  overflow-y: auto;
+  z-index: 100;
+  display: none;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.6);
+}
+
+.autocomplete-dropdown.visible {
+  display: block;
+}
+
+.autocomplete-item {
+  padding: 8px 12px;
+  font-size: 13px;
+  color: var(--fg);
+  cursor: pointer;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+
+.autocomplete-item:last-child {
+  border-bottom: none;
+}
+
+.autocomplete-item:hover,
+.autocomplete-item.selected {
+  background: rgba(255,255,255,0.06);
+}
+
+.autocomplete-item .category {
+  font-size: 11px;
+  color: var(--fg2);
+  margin-top: 2px;
+}
+
+/* Result panel for search */
+.result-panel {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 320px;
+  max-height: calc(100vh - 40px);
+  overflow-y: auto;
+  background: var(--bg2);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px;
+  padding: 20px;
+  display: none;
+  z-index: 50;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.6);
+}
+
+.result-panel.visible {
+  display: block;
+}
+
+.result-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.result-panel-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--fg);
+}
+
+.result-panel-close {
+  background: none;
+  border: none;
+  color: var(--fg2);
+  font-size: 18px;
+  cursor: pointer;
+  padding: 4px;
+  line-height: 1;
+}
+
+.result-panel-close:hover {
+  color: var(--fg);
+}
+
+.result-panel-section {
+  margin-bottom: 16px;
+}
+
+.result-panel-label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--fg2);
+  margin-bottom: 4px;
+}
+
+.result-panel-value {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--fg);
+}
+
+.result-panel-value a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.result-panel-value a:hover {
+  text-decoration: underline;
+}
+
+.result-panel-sub {
+  font-size: 12px;
+  color: var(--fg2);
+  margin-top: 4px;
+}
+
+.indicator-bar {
+  height: 4px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-top: 4px;
+}
+
+.indicator-fill {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 0.3s;
+}
+
+.result-panel-rationale {
+  font-size: 12px;
+  color: var(--fg2);
+  line-height: 1.5;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+/* Minimized state */
+.result-panel.minimized {
+  width: auto !important;
+  min-width: 150px;
+  max-width: 250px;
+  max-height: 40px;
+  overflow: hidden;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: max-height 0.2s, padding 0.2s;
+}
+
+.result-panel.minimized .result-panel-section,
+.result-panel.minimized .result-panel-close,
+.result-panel.minimized .result-panel-minimize {
+  display: none;
+}
+
+.result-panel.minimized .result-panel-header {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.result-panel.minimized .result-panel-title {
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Drag handle */
+.result-panel-header {
+  position: relative;
+}
+
+.drag-handle {
+  position: absolute;
+  left: -24px;
+  top: 0;
+  width: 20px;
+  height: 24px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 4px;
+  cursor: grab;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.result-panel:hover .drag-handle {
+  opacity: 1;
+}
+
+.drag-handle::before {
+  content: '';
+  width: 4px;
+  height: 12px;
+  background: repeating-linear-gradient(
+    to bottom,
+    var(--fg2) 0px,
+    var(--fg2) 2px,
+    transparent 2px,
+    transparent 4px
+  );
+  border-radius: 2px;
+}
+
+.drag-handle:active {
+  cursor: grabbing;
+}
+
+/* Dragging state */
+.result-panel.dragging {
+  opacity: 0.9;
+  box-shadow: 0 12px 48px rgba(0,0,0,0.7);
+  cursor: grabbing;
+}
+
+.result-panel.dragging .drag-handle {
+  cursor: grabbing;
+}
+
+/* Minimize button */
+.result-panel-minimize {
+  background: none;
+  border: none;
+  color: var(--fg2);
+  font-size: 16px;
+  cursor: pointer;
+  padding: 4px;
+  line-height: 1;
+  margin-right: 4px;
+}
+
+.result-panel-minimize:hover {
+  color: var(--fg);
+}
+
+/* Header layout */
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16px;
+  gap: 16px;
+}
+
+.header-left {
+  flex-shrink: 0;
+}
+
+.header-center {
+  flex: 1;
+  text-align: center;
+}
+
+.header-right {
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .header-top {
+    flex-direction: column;
+    align-items: center;
+  }
+  .search-input-wrapper {
+    width: 100%;
+  }
+  .result-panel {
+    position: fixed;
+    top: auto;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    max-height: 50vh;
+    border-radius: 12px 12px 0 0;
+  }
+  /* Disable drag on mobile */
+  .drag-handle {
+    display: none;
+  }
+  /* Hide minimize button on mobile - use bottom sheet behavior */
+  .result-panel-minimize {
+    display: none;
+  }
+}
+
 body {
   background: var(--bg);
   color: var(--fg);
@@ -208,12 +563,29 @@ canvas#canvas {
 
 <div id="wrapper">
 <div id="header">
+  <div class="header-top">
+    <div class="header-left">
+      <div class="lang-toggle">
+        <button id="langEn" class="active">English</button>
+        <button id="langZh">中文</button>
+      </div>
+    </div>
+    <div class="header-center">
+      <h1 data-i18n="title">US Job Market Visualizer</h1>
+      <a href="https://github.com/karpathy/jobs" style="font-size: 12px; color: var(--fg2); text-decoration: none;">GitHub</a>
+    </div>
+    <div class="header-right">
+      <div class="search-input-wrapper">
+        <input type="text" id="searchInput" autocomplete="off" data-i18n-placeholder="searchPlaceholder">
+        <div class="autocomplete-dropdown" id="autocompleteDropdown"></div>
+      </div>
+    </div>
+  </div>
   <div class="intro">
-    <h1>US Job Market Visualizer <a href="https://github.com/karpathy/jobs">GitHub</a></h1>
-    <p>This is a research tool that visualizes <b>342 occupations</b> from the <a href="https://www.bls.gov/ooh/">Bureau of Labor Statistics Occupational Outlook Handbook</a>, covering <b>143M jobs</b> across the US economy. Each rectangle's <b>area</b> is proportional to total employment. <b>Color</b> shows the selected metric &mdash; toggle between BLS projected growth outlook, median pay, education requirements, and AI exposure. Click any tile to view its full BLS page. This is not a report, a paper, or a serious economic publication &mdash; it is a development tool for exploring BLS data visually.</p>
-    <p><b>LLM-powered coloring:</b> The <a href="https://github.com/karpathy/jobs">source code</a> includes scrapers, parsers, and a pipeline for writing custom LLM prompts to score and color occupations by any criteria. You write a prompt, the LLM scores each occupation, and the treemap colors accordingly. The "Digital AI Exposure" option is one example &mdash; it estimates how much current AI (which is primarily digital) will reshape each occupation. But you could write a different prompt for any question &mdash; e.g. exposure to humanoid robotics, offshoring risk, climate impact &mdash; and re-run the pipeline to get a different coloring.</p>
+    <p data-i18n="intro1">This is a research tool that visualizes <b>342 occupations</b> from the <a href="https://www.bls.gov/ooh/">Bureau of Labor Statistics Occupational Outlook Handbook</a>, covering <b>143M jobs</b> across the US economy. Each rectangle's <b>area</b> is proportional to total employment. <b>Color</b> shows the selected metric &mdash; toggle between BLS projected growth outlook, median pay, education requirements, and AI exposure. Click any tile to view its full BLS page. This is not a report, a paper, or a serious economic publication &mdash; it is a development tool for exploring BLS data visually.</p>
+    <p data-i18n="intro2"><b>LLM-powered coloring:</b> The <a href="https://github.com/karpathy/jobs">source code</a> includes scrapers, parsers, and a pipeline for writing custom LLM prompts to score and color occupations by any criteria. You write a prompt, the LLM scores each occupation, and the treemap colors accordingly. The "Digital AI Exposure" option is one example &mdash; it estimates how much current AI (which is primarily digital) will reshape each occupation. But you could write a different prompt for any question &mdash; e.g. exposure to humanoid robotics, offshoring risk, climate impact &mdash; and re-run the pipeline to get a different coloring.</p>
     <details>
-      <summary>View the Digital AI Exposure scoring prompt (example)</summary>
+      <summary data-i18n="promptSummary">View the Digital AI Exposure scoring prompt (example)</summary>
       <div class="prompt-box">You are an expert analyst evaluating how exposed different occupations are to AI. You will be given a detailed description of an occupation from the Bureau of Labor Statistics.
 
 Rate the occupation's overall AI Exposure on a scale from 0 to 10.
@@ -239,7 +611,7 @@ Use these anchors to calibrate your score:
 Respond with ONLY a JSON object in this exact format, no other text:
 {"exposure": &lt;0-10&gt;, "rationale": "&lt;2-3 sentences explaining the key factors&gt;"}</div>
     </details>
-    <p><b>Caveat on Digital AI Exposure scores:</b> These are rough LLM estimates, not rigorous predictions. A high score does not predict the job will disappear. Software developers score 9/10 because AI is transforming their work &mdash; but demand for software could easily <em>grow</em> as each developer becomes more productive. The score does not account for demand elasticity, latent demand, regulatory barriers, or social preferences for human workers. Many high-exposure jobs will be reshaped, not replaced.</p>
+    <p data-i18n="caveat"><b>Caveat on Digital AI Exposure scores:</b> These are rough LLM estimates, not rigorous predictions. A high score does not predict the job will disappear. Software developers score 9/10 because AI is transforming their work &mdash; but demand for software could easily <em>grow</em> as each developer becomes more productive. The score does not account for demand elasticity, latent demand, regulatory barriers, or social preferences for human workers. Many high-exposure jobs will be reshaped, not replaced.</p>
   </div>
 
   <div class="controls-row">
@@ -275,6 +647,49 @@ Respond with ONLY a JSON object in this exact format, no other text:
 </div>
 
 <canvas id="canvas"></canvas>
+
+<!-- Result Panel -->
+<div class="result-panel" id="resultPanel">
+  <div class="result-panel-header">
+    <div class="drag-handle" id="resultDragHandle" title="Drag to move"></div>
+    <div class="result-panel-title" id="resultTitle"></div>
+    <div style="display: flex; gap: 4px;">
+      <button class="result-panel-minimize" id="resultMinimize" title="Minimize">&minus;</button>
+      <button class="result-panel-close" id="resultClose">&times;</button>
+    </div>
+  </div>
+  <div class="result-panel-section">
+    <div class="result-panel-label" data-i18n="outlook">Future Outlook</div>
+    <div class="result-panel-value" id="resultOutlook"></div>
+    <div class="indicator-bar">
+      <div class="indicator-fill" id="resultOutlookBar"></div>
+    </div>
+    <div class="result-panel-sub" id="resultOutlookDesc"></div>
+  </div>
+  <div class="result-panel-section">
+    <div class="result-panel-label" data-i18n="pay">Median Pay</div>
+    <div class="result-panel-value" id="resultPay"></div>
+    <div class="indicator-bar">
+      <div class="indicator-fill" id="resultPayBar"></div>
+    </div>
+  </div>
+  <div class="result-panel-section">
+    <div class="result-panel-label" data-i18n="education">Education Required</div>
+    <div class="result-panel-value" id="resultEducation"></div>
+  </div>
+  <div class="result-panel-section">
+    <div class="result-panel-label" data-i18n="exposure">AI Exposure</div>
+    <div class="result-panel-value" id="resultExposure"></div>
+    <div class="indicator-bar">
+      <div class="indicator-fill" id="resultExposureBar"></div>
+    </div>
+    <div class="result-panel-rationale" id="resultRationale"></div>
+  </div>
+  <div class="result-panel-section">
+    <div class="result-panel-label" data-i18n="employment">Employment</div>
+    <div class="result-panel-value" id="resultEmployment"></div>
+  </div>
+</div>
 </div>
 
 <div id="tooltip">
@@ -285,6 +700,607 @@ Respond with ONLY a JSON object in this exact format, no other text:
 </div>
 
 <script>
+
+// ── Translations ───────────────────────────────────────────────────────────
+
+const i18n = {
+  en: {
+    title: "US Job Market Visualizer",
+    intro1: 'This is a research tool that visualizes <b>342 occupations</b> from the <a href="https://www.bls.gov/ooh/">Bureau of Labor Statistics Occupational Outlook Handbook</a>, covering <b>143M jobs</b> across the US economy. Each rectangle\'s <b>area</b> is proportional to total employment. <b>Color</b> shows the selected metric &mdash; toggle between BLS projected growth outlook, median pay, education requirements, and AI exposure. Click any tile to view its full BLS page. This is not a report, a paper, or a serious economic publication &mdash; it is a development tool for exploring BLS data visually.',
+    intro2: '<b>LLM-powered coloring:</b> The <a href="https://github.com/karpathy/jobs">source code</a> includes scrapers, parsers, and a pipeline for writing custom LLM prompts to score and color occupations by any criteria. You write a prompt, the LLM scores each occupation, and the treemap colors accordingly. The "Digital AI Exposure" option is one example &mdash; it estimates how much current AI (which is primarily digital) will reshape each occupation. But you could write a different prompt for any question &mdash; e.g. exposure to humanoid robotics, offshoring risk, climate impact &mdash; and re-run the pipeline to get a different coloring.',
+    promptSummary: 'View the Digital AI Exposure scoring prompt (example)',
+    caveat: '<b>Caveat on Digital AI Exposure scores:</b> These are rough LLM estimates, not rigorous predictions. A high score does not predict the job will disappear. Software developers score 9/10 because AI is transforming their work &mdash; but demand for software could easily <em>grow</em> as each developer becomes more productive. The score does not account for demand elasticity, latent demand, regulatory barriers, or social preferences for human workers. Many high-exposure jobs will be reshaped, not replaced.',
+    searchPlaceholder: "Search occupations...",
+    outlook: "Future Outlook",
+    pay: "Median Pay",
+    education: "Education Required",
+    exposure: "AI Exposure",
+    employment: "Employment"
+  },
+  zh: {
+    title: "美国就业市场可视化",
+    intro1: '这是一个研究工具，可视化了来自 <a href="https://www.bls.gov/ooh/">美国劳工统计局职业前景手册</a> 的 <b>342 个职业</b>，覆盖美国经济中的 <b>1.43 亿个工作岗位</b>。每个矩形的<b>面积</b>与总就业人数成正比。<b>颜色</b>显示所选指标 &mdash; 可以在 BLS 预测增长前景、中位数薪资、教育要求和 AI 影响程度之间切换。点击任何色块可查看其完整的 BLS 页面。这不是报告、论文或严肃的经济出版物 &mdash; 它是一个用于可视化探索 BLS 数据的开发工具。',
+    intro2: '<b>LLM 驱动的着色：</b> <a href="https://github.com/karpathy/jobs">源代码</a> 包括爬虫、解析器和用于编写自定义 LLM 提示以根据任何标准对职业进行评分和着色的管道。您编写提示，LLM 对每个职业进行评分，树状图相应着色。"数字 AI 影响程度"选项就是一个例子 &mdash; 它估计当前的 AI（主要是数字化的）将如何重塑每个职业。但您可以针对任何问题编写不同的提示 &mdash; 例如对人形机器人、外包风险、气候影响的影响 &mdash; 并重新运行管道以获得不同的着色。',
+    promptSummary: '查看数字 AI 影响程度评分提示（示例）',
+    caveat: '<b>关于数字 AI 影响程度分数的说明：</b> 这些是粗略的 LLM 估计，而不是严格的预测。高分并不预测工作会消失。软件开发人员得分为 9/10，因为 AI 正在改变他们的工作 &mdash; 但随着每个开发人员变得更有生产力，对软件的需求可能会<em>增长</em>。该分数不考虑需求弹性、潜在需求、监管壁垒或对人工的社会偏好。许多高影响工作将被重塑，而不是被取代。',
+    searchPlaceholder: "搜索职业...",
+    outlook: "未来前景",
+    pay: "中位数工资",
+    education: "教育要求",
+    exposure: "AI 影响程度",
+    employment: "就业人数"
+  }
+};
+
+const categoryTranslations = {
+  "architecture-and-engineering": { en: "Architecture and Engineering", zh: "建筑与工程" },
+  "arts-and-design": { en: "Arts and Design", zh: "艺术与设计" },
+  "building-and-grounds-cleaning": { en: "Building and Grounds Cleaning", zh: "建筑与保洁" },
+  "business-and-financial": { en: "Business and Financial", zh: "商业与金融" },
+  "community-and-social-service": { en: "Community and Social Service", zh: "社区与社会服务" },
+  "computer-and-information-technology": { en: "Computer and Information Technology", zh: "计算机与信息技术" },
+  "construction-and-extraction": { en: "Construction and Extraction", zh: "建筑与开采" },
+  "education-training-and-library": { en: "Education, Training, and Library", zh: "教育、培训与图书" },
+  "entertainment-and-sports": { en: "Entertainment and Sports", zh: "娱乐与体育" },
+  "farming-fishing-and-forestry": { en: "Farming, Fishing, and Forestry", zh: "农业、渔业与林业" },
+  "food-preparation-and-serving": { en: "Food Preparation and Serving", zh: "食品制备与服务" },
+  "healthcare": { en: "Healthcare", zh: "医疗保健" },
+  "installation-maintenance-and-repair": { en: "Installation, Maintenance, and Repair", zh: "安装、维护与修理" },
+  "legal": { en: "Legal", zh: "法律" },
+  "life-physical-and-social-science": { en: "Life, Physical, and Social Science", zh: "生命、物理与社会科学" },
+  "management": { en: "Management", zh: "管理" },
+  "math": { en: "Math", zh: "数学" },
+  "media-and-communication": { en: "Media and Communication", zh: "媒体与传播" },
+  "military": { en: "Military", zh: "军事" },
+  "office-and-administrative-support": { en: "Office and Administrative Support", zh: "办公室与行政支持" },
+  "personal-care-and-service": { en: "Personal Care and Service", zh: "个人护理与服务" },
+  "production": { en: "Production", zh: "生产" },
+  "protective-service": { en: "Protective Service", zh: "安保服务" },
+  "sales": { en: "Sales", zh: "销售" },
+  "transportation-and-material-moving": { en: "Transportation and Material Moving", zh: "运输与物料搬运" }
+};
+
+// Chinese translations for occupations (slug -> Chinese name)
+const occupationTranslations = {
+  "accountants-and-auditors": "会计师和审计师",
+  "actors": "演员",
+  "actuaries": "精算师",
+  "administrative-services-managers": "行政服务经理",
+  "advertising-sales-agents": "广告销售代理",
+  "advertising-promotions-and-marketing-managers": "广告、促销和营销经理",
+  "aerospace-engineering-and-operations-technologists": "航天工程和运营技术员",
+  "aerospace-engineers": "航天工程师",
+  "agricultural-and-food-science-technicians": "农业和食品科学技术员",
+  "agricultural-and-food-scientists": "农业和食品科学家",
+  "agricultural-inspectors": "农业检查员",
+  "aircraft-and-aviation": "飞机和航空",
+  "airline-and-commercial-pilots": "航空公司和商业飞行员",
+  "airtraffic-controllers": "空中交通管制员",
+  "ambulance-drivers-and-attendants": "救护车司机和护理员",
+  "amusement-and-attraction-attendants": "游乐设施服务员",
+  "animal-caretakers": "动物护理员",
+  "animal-trainers": "动物训练师",
+  "announcers": "播音员",
+  "appraisers-and-assessors-of-real-estate": "房地产估价师和评估师",
+  "architects": "建筑师",
+  "architectural-and-civil-drafters": "建筑和土木绘图员",
+  "architecture-and-engineering-managers": "建筑和工程经理",
+  "archivists": "档案管理员",
+  "art-directors": "艺术总监",
+  "art-and-design-workers": "艺术设计工作者",
+  "athletes-and-sports-competitors": "运动员和体育选手",
+  "athletic-trainers": "运动防护师",
+  "audiologists": "听力学家",
+  "audio-and-video-technicians": "音频和视频技术员",
+  "automotive-body-and-related-repairers": "汽车车身及相关修理人员",
+  "automotive-service-technicians-and-mechanics": "汽车服务技术员和机械师",
+  "bakers": "烘焙师",
+  "barbers": "理发师",
+  "bartenders": "调酒师",
+  "biological-technicians": "生物技术员",
+  "bioengineers-and-biomedical-engineers": "生物工程师和生物医学工程师",
+  "boilermakers": "锅炉制造工",
+  "bookkeepers-accounting-and-audit-clerks": "簿记、会计和审计文员",
+  "brakemakers": "制动器制造工",
+  "brickmasons-and-blockmasons": "砖匠和砌块工",
+  "broadcast-and-sound-engineering-technicians": "广播和声音工程技术员",
+  "brokers": "经纪人",
+  "budget-analysts": "预算分析师",
+  "building-and-grounds-cleaning-and-maintenance": "建筑和场地清洁维护",
+  "building-and-home-inspectors": "建筑和房屋检查员",
+  "building-inspectors": "建筑检查员",
+  "bus-and-truck-mechanics-and-diesel-engine-specialists": "公交和卡车机械师及柴油机专家",
+  "business-and-financial": "商业和金融",
+  "business-operations-specialists": "业务运营专员",
+  "cabinetmakers-and-bench-carpenters": "橱柜制造商和台面木工",
+  "carpenters": "木工",
+  "carpet-installers": "地毯安装工",
+  "cartographers-and-photogrammetrists": "地图制图师和摄影测量师",
+  "cashiers": "收银员",
+  "ceiling-tile-installers": "吊顶安装工",
+  "cement-masons-and-concrete-finishers": "水泥工和混凝土饰面工",
+  "chemists-and-materials-scientists": "化学家和材料科学家",
+  "childcare-workers": "保育员",
+  "chiropractors": "脊骨神经医学医生",
+  "chefs-and-head-cooks": "厨师和主厨",
+  "city-and-regional-planning": "城市和区域规划",
+  "civil-engineers": "土木工程师",
+  "clinical-laboratory-technologists-and-technicians": "临床实验室技术员和技术员",
+  "coaches-and-scouts": "教练和球探",
+  "coating-painting-and-spraying-machine-setters": "涂层、喷涂和喷漆机操作员",
+  "commercial-and-industrial-designers": "商业和工业设计师",
+  "communiity-and-social-service": "社区和社会服务",
+  "community-health-workers": "社区卫生工作者",
+  "community-service-managers": "社区服务经理",
+  "compensation-and-benefits-managers": "薪酬和福利经理",
+  "compensation-benefits-and-job-analysis-specialists": "薪酬、福利和职位分析专员",
+  "computer-and-information-research-scientists": "计算机和信息研究科学家",
+  "computer-and-information-technology": "计算机和信息技术",
+  "computer-controlled-machine-tool-programmers": "数控机床程序员",
+  "computer-hardware-engineers": "计算机硬件工程师",
+  "computer-network-architects": "计算机网络架构师",
+  "computer-programmers": "计算机程序员软件工程师",
+  "computer-science-teachers": "计算机科学教师",
+  "computer-support-specialists": "计算机支持专员",
+  "computer-systems-analysts": "计算机系统分析师",
+  "construction": "建筑",
+  "construction-and-building-inspectors": "建筑和建筑检查员",
+  "construction-and-extraction": "建筑和开采",
+  "construction-equipment-operators": "建筑设备操作员",
+  "construction-laborers": "建筑劳工",
+  "construction-managers": "建筑经理",
+  "cooks": "厨师",
+  "correctional-officers-and-jailers": "惩教人员和狱警",
+  "cost-estimators": "成本估算师",
+  "costume-attendants": "服装管理员",
+  "counselors": "咨询师",
+  "craft-artists": "工艺艺术家",
+  "creative-writers-and-authors": "创意作家和作者",
+  "credit-counselors": "信用顾问",
+  "credit-authorizers": "信用授权员",
+  "criminal-investigators-and-special-agents": "刑事调查员和特工",
+  "crossing-guards": "交通引导员",
+  "crushing-grinding-polishing-mixing-and-blending-workers": "破碎、研磨、抛光、混合和调配工人",
+  "customer-service-representatives": "客户服务代表",
+  "cutters-and-trimmers": "裁剪工和修整工",
+  "dancers-and-choreographers": "舞蹈家和编舞师",
+  "data-entry-keyers": "数据录入员",
+  "database-administrators-and-architects": "数据库管理员和架构师",
+  "dental-assistants": "牙医助理",
+  "dental-hygienists": "牙科卫生师",
+  "dentists": "牙医",
+  "designers": "设计师",
+  "desktop-publishers": "桌面出版人员",
+  "developers-and-engineers": "开发人员和工程师",
+  "diagnostic-medical-sonographers": "医学超声诊断医师",
+  "dietitians-and-nutritionists": "营养师和营养学家",
+  "digital-mapping-and-navigation": "数字制图和导航",
+  "directors-of-religious-activities-and-education": "宗教活动和教育主任",
+  "dredging-operations": "疏浚作业",
+  "drilling-and-blasting": "钻孔和爆破",
+  "drywall-and-ceiling-tile-installers": "干墙和吊顶安装工",
+  "dredge-excavating-and-loading-machine-operators": "挖泥船、挖掘和装载机操作员",
+  "earth-drillers": "地球钻探工",
+  "economists": "经济学家",
+  "editors": "编辑",
+  "education-training-and-library": "教育、培训和图书馆",
+  "education-administrators": "教育管理人员",
+  "educational-instruction-and-library": "教育教学和图书馆",
+  "electric-motor-power-tool-and-related-repairers": "电动机、电动工具及相关修理人员",
+  "electrical-and-electronics-engineers": "电气和电子工程师",
+  "electrical-and-electronics-engineering-technicians": "电气和电子工程技术员",
+  "electrical-power-line-installers-and-repairers": "电力线路安装和修理人员",
+  "electricians": "电工",
+  "electronic-home-entertainment-equipment-installers-and-repairers": "家用娱乐电子设备安装和修理人员",
+  "elementary-middle-and-high-school-teachers": "小学、中学和高中教师",
+  "emergency-management-directors": "应急管理主任",
+  "emergency-medical-technicians-and-paramedics": "急救医疗技术员和护理人员",
+  "emts-and-paramedics": "急救医疗技术员和护理人员",
+  "employment-and-hr": "就业和人力资源",
+  "employment-and-labor-relations-specialists": "就业和劳资关系专员",
+  "engineering": "工程",
+  "entertainment-and-sports": "娱乐和体育",
+  "environmental-engineers": "环境工程师",
+  "environmental-science-and-protection-technicians": "环境科学和保护技术员",
+  "environmental-scientists-and-specialists": "环境科学家和专员",
+  "equipment-operators": "设备操作员",
+  "etalants": "人才",
+  "executive-secretaries-and-executive-administrative-assistants": "行政秘书和行政助理",
+  "executives": "高管",
+  "extraction": "开采",
+  "farming-fishing-and-forestry": "农业、渔业和林业",
+  "farmers-ranchers-and-other-agricultural-managers": "农民、牧场主和其他农业管理人员",
+  "farmworkers-and-laborers-crop-nursery-and-greenhouse": "农场工人和劳工（作物、苗圃和温室）",
+  "fashion-designers": "时装设计师",
+  "federal-executives-and- legislators": "联邦高管和立法者",
+  "financial-analysts": "金融分析师",
+  "financial-clerks": "金融文员",
+  "financial-managers": "财务经理",
+  "financial-specialists": "金融专家",
+  "firefighters": "消防员",
+  "fish-and-game-wardens": "鱼类和野生动物管理员",
+  "fishers-and-hunting-fishing-trapping-workers": "渔民和狩猎、捕鱼、诱捕工人",
+  "flight-attendants": "空乘人员",
+  "flooring-installers": "地板安装工",
+  "floral-designers": "花艺设计师",
+  "food-and-beverage": "餐饮",
+  "food-and-tobacco-processing-roasters": "食品和烟草加工烘焙工",
+  "food-preparation-and-serving": "食品制备和服务",
+  "food-preparation-workers": "食品制备工人",
+  "food-preparation-and-serving-related-workers": "食品制备和服务相关人员",
+  "food-scientists-and-technologists": "食品科学家和技术专家",
+  "food-service-managers": "餐饮服务经理",
+  "food-cooking-machine-operators-and-tenders": "食品烹饪机器操作员和看管员",
+  "forensic-science-technicians": "法医科学技术员",
+  "forest-and-conservation-workers": "森林和保护工人",
+  "foresters": "林业员",
+  "forestry-and-conservation": "林业和保护",
+  "foundation-and-framework-structures": "地基和框架结构",
+  "farming-fishing-and-forestry-workers": "农业、渔业和林业工人",
+  "funeral-service-workers": "殡葬服务人员",
+  "furniture-finishers": "家具修饰工",
+  "gambling-dealers": "赌博发牌员",
+  "gambling-and-gaming": "赌博和游戏",
+  "gambling-services-workers": "赌博服务人员",
+  "game-and-puzzle-workers": "游戏和拼图工作者",
+  "garment-workers": "服装工人",
+  "general-and-operations-managers": "总经理和运营经理",
+  "geological-and-petroleum-technicians": "地质和石油技术员",
+  "geoscientists": "地球科学家",
+  "glass-blowers-and-molders": "玻璃吹制工和模压工",
+  "glaziers": "玻璃安装工",
+  "graders-and-sorters": "分级员和分拣员",
+  "graphic-designers": "平面设计师",
+  "grounds-maintenance-and-landscaping": "场地维护和景观",
+  "grounds-maintenance-workers": "场地维护工人",
+  "hairdressers-hairstylists-and-cosmetologists": "理发师、发型师和美容师",
+  "hand-laborers-and-movers": "手工劳工和搬运工",
+  "hardware-store-workers": "五金店员工",
+  "hazardous-materials-removal-workers": "有害物质清除工人",
+  "health-and-safety-engineers": "健康与安全工程师",
+  "healthcare": "医疗保健",
+  "healthcare-and-medical": "医疗保健和医学",
+  "healthcare-practitioners-and-technical": "医疗保健从业者和技术人员",
+  "healthcare-support": "医疗保健支持",
+  "healthcare-support-occupations": "医疗保健支持职业",
+  "heating-air-conditioning-and-refrigeration-mechanics-and-installers": "供暖、空调和制冷机械师和安装工",
+  "heavy-and-tractor-trailer-truck-drivers": "重型和半挂卡车司机",
+  "high-speed-cutters-and-trimmers": "高速切割工和修整工",
+  "historians": "历史学家",
+  "home-health-aides": "家庭健康护理员",
+  "home-appliance-repairers": "家用电器修理人员",
+  "human-resources-assistants": "人力资源助理",
+  "human-resources-managers": "人力资源经理",
+  "human-resources-specialists": "人力资源专员",
+  "hunters-and-trappers": "猎人诱捕者",
+  "illistration": "插图",
+  "industrial-engineers": "工业工程师",
+  "industrial-equipment-maintenance-and-repair": "工业设备维护和修理",
+  "industrial-machinery-mechanics": "工业机械师",
+  "industrial-production-managers": "工业生产经理",
+  "information-and-record-clerks": "信息和记录文员",
+  "information-security-analysts": "信息安全分析师",
+  "installation-maintenance-and-repair": "安装、维护和修理",
+  "instructional-coordinators": "教学协调员",
+  "insurance-appraisers": "保险理赔员",
+  "insurance-underwriters": "保险承保人",
+  "interior-designers": "室内设计师",
+  "interpreters-and-translators": "口译员和翻译员",
+  "janitors-and-cleaners": "保洁员和清洁工",
+  "jewelers-and-precious-stone-and-metal-workers": "珠宝商和宝石金属工人",
+  "judges-and-magistrates": "法官和地方法官",
+  "kitchen-and-dining-workers": "厨房和餐饮服务人员",
+  "landscape-architects": "景观设计师",
+  "landscaping-and-groundskeeping-workers": "景观和场地维护工人",
+  "law-enforcement": "执法",
+  "lawyers": "律师",
+  "legal-occupations": "法律职业",
+  "legal-support-workers": "法律支持工作者",
+  "legislators": "立法者",
+  "librarians-and-library-media-teachers": "图书馆员和图书馆媒体教师",
+  "library-assistants-and-technicians": "图书馆助理和技术员",
+  "library-technicians": "图书馆技术员",
+  "life-physical-and-social-science": "生命、物理和社会科学",
+  "life-scientists": "生命科学家",
+  "loading-machine-operators": "装载机操作员",
+  "locomotive-engineers-and-operaters": "火车司机和操作员",
+  "lodging-managers": "住宿经理",
+  "logging-equipment-operators": "伐木设备操作员",
+  "logisticians": "物流师",
+  "machine-and-tool-die-makers": "机床和模具制造工",
+  "machine-tool-cutters-and-etchers": "机床切割工和蚀刻工",
+  "machinists-and-tool-and-die-makers": "机械师和工具模具制造工",
+  "maid-and-housekeeping-cleaners": "清洁工和客房服务员",
+  "mail-carriers": "邮递员",
+  "maintenance-and-repair-workers": "维护和修理工人",
+  "maintenance-equipment-workers": "维护设备工人",
+  "maintenance-workers": "维护工人",
+  "management": "管理",
+  "management-analysts": "管理分析师",
+  "manicurists-and-pedicurists": "美甲师和修脚师",
+  "manufacturing": "制造",
+  "mapping-and-surveying": "制图和测量",
+  "marriage-and-family-therapists": "婚姻和家庭治疗师",
+  "masonry-and-tiling-workers": "砌砖和贴砖工人",
+  "mass-media": "大众媒体",
+  "material-moving-workers": "物料搬运工人",
+  "math": "数学",
+  "math-and-science": "数学和科学",
+  "mathematical-science": "数学科学",
+  "mathematicians": "数学家",
+  "mechanical-door-installers": "机械门安装工",
+  "mechanical-engineers": "机械工程师",
+  "mechanical-inspectors": "机械检查员",
+  "media-and-communication": "媒体和传播",
+  "media-and-communication-equipment-workers": "媒体和通信设备工作者",
+  "medical-and-health-services-managers": "医疗和卫生服务经理",
+  "medical-and-health-services": "医疗和卫生服务",
+  "medical-assistants": "医疗助理",
+  "medical-equipment-repairers": "医疗设备修理人员",
+  "medical-records-specialists": "医疗记录专员",
+  "medical-scientists": "医学科学家",
+  "medical-transcriptionists": "医疗转录员",
+  "mental-health-and-substance-abuse-social-workers": "心理健康和药物滥用社工",
+  "mental-health-counselors": "心理健康咨询师",
+  "metal-and-plastic-machine-workers": "金属和塑料机器工人",
+  "metal-workers-and-welders": "金属工人和焊工",
+  "military": "军事",
+  "military-protective-service-workers": "军事安保服务人员",
+  "millwrights": "机械装配工",
+  "mine-cutters-and- blasters": "矿山切割工和爆破工",
+  "mining-and-geological-engineers": "采矿和地质工程师",
+  "mixing-and-blending-machine-setters": "混合和调配机器操作员",
+  "models": "模特",
+  "morticians-and-undertakers": "殡仪员和殡葬承办人",
+  "molders-and-molding-machine-setters": "模具工和成型机操作员",
+  "motive-power-transportation": "动力运输",
+  "motor-vehicle-operators": "机动车操作员",
+  "motor-vehicle-parts-workers": "机动车零部件工人",
+  "motor-vehicle-repairers": "机动车修理人员",
+  "movers-and-hand-laborers": "搬运工和手工劳工",
+  "museum-technicians-and-conservators": "博物馆技术员和文物保护员",
+  "musicians-and-singers": "音乐家和歌手",
+  "natural-sciences-managers": "自然科学经理",
+  "network-and-computer-systems-administrators": "网络和计算机系统管理员",
+  "news-analysts-reporters-and-journalists": "新闻分析师、记者和新闻工作者",
+  "non-farm-agricultural-managers": "非农业管理经理",
+  "nonfarm-animal-caretakers": "非农场动物护理员",
+  "nuclear-engineers": "核工程师",
+  "nuclear-medicine-technologists": "核医学技术员",
+  "nursing-psychiatric-and-home-health-aides": "护理、精神科和家庭健康护理员",
+  "occupational-health-and-safety-specialists": "职业健康与安全专员",
+  "occupational-health-and-safety-technicians": "职业健康与安全技术员",
+  "occupational-therapists": "职业治疗师",
+  "occupational-therapy-assistants-and-aides": "职业治疗助理和护理员",
+  "office-and-admin-administrative-support": "办公室和行政支持",
+  "office-and-administrative-support": "办公室和行政支持",
+  "office-clerks": "办公室文员",
+  "oil-and-gas-workers": "石油和天然气工人",
+  "oil-and-gas": "石油和天然气",
+  "online-sellers": "在线销售员",
+  "operating-engineers-and-other-construction-equipment-operators": "操作工程师和其他建筑设备操作员",
+  "operations-research-analysts": "运筹学分析师",
+  "ophthalmic-laboratory-technicians": "眼科实验室技术员",
+  "opticians": "验光师",
+  "optometrists": "眼科医生",
+  "oral-and-maxillofacial-surgeons": "口腔颌面外科医生",
+  "orthotists-and-prosthetists": "矫形师和义肢师",
+  "outlook": "前景",
+  "packaging-and-filling-machine-operators": "包装和灌装机操作员",
+  "painters-and-decorators": "油漆工和装饰工",
+  "painting-and-coating-workers": "油漆和涂层工人",
+  "paperhangers": "贴纸工",
+  "paralegals-and-legal-assistants": "律师助理和法律助理",
+  "parking-enforcement-workers": "停车执法员",
+  "parts-salespersons": "零部件销售员",
+  "paving-finishing-and-paving-equipment-operators": "铺路、饰面和铺路设备操作员",
+  "payroll-and-timekeeping-clerks": "薪资和时间记录文员",
+  "personal-care-and-service": "个人护理和服务",
+  "personal-care-occupations": "个人护理职业",
+  "personal-care-workers": "个人护理工人",
+  "personal-finance-advisors": "个人理财顾问",
+  "personal-home-care": "个人家庭护理",
+  "personal-home-care-aides": "个人家庭护理员",
+  "pest-control-workers": "害虫防治工人",
+  "petroleum-geologists": "石油地质学家",
+  "petroleum-engineers": "石油工程师",
+  "pharmacists": "药剂师",
+  "pharmacy-aides": "药房助理",
+  "pharmacy-technicians": "药房技术员",
+  "photographers": "摄影师",
+  "physical-therapist-assistants-and-aides": "物理治疗师助理和护理员",
+  "physical-therapists": "物理治疗师",
+  "physician-assistants": "医师助理",
+  "physicians-and-surgeons": "医师和外科医生",
+  "plant-and-system-operators": "工厂和系统操作员",
+  "plasterers-and-stucco-masons": "抹灰工和泥水匠",
+  "plating-and-coating-machine-operators": "电镀和涂层机操作员",
+  "plumbers-pipefitters-and-steamfitters": "水管工、管道工和蒸汽管道工",
+  "podiatrists": "足病医生",
+  "police-and-detectives": "警察和侦探",
+  "police-and-sheriffs-patrol-officers": "警察和治安官巡逻人员",
+  "postal-service-clerks": "邮政服务文员",
+  "postal-service-workers": "邮政服务人员",
+  "postmasters-and-mail-superintendents": "邮政局长和邮件主管",
+  "postsecondary-teachers": "高等教育教师",
+  "poultry-cutters-and-trimmers": "家禽切割工和修整工",
+  "power-distributors-and-dispatchers": "电力配送员和调度员",
+  "power-plant-operaters": "发电厂操作员",
+  "precision-agriculture": "精准农业",
+  "precision-etching-and-grinding-workers": "精密蚀刻和研磨工人",
+  "precision-metal-plastic-workers": "精密金属塑料工人",
+  "precision-workers": "精密工人",
+  "preschool-teachers": "学前教育教师",
+  "printing-workers": "印刷工人",
+  "printing-binding-and-finishing-workers": "印刷、装订和整理工人",
+  "private-detectives-and-investigators": "私家侦探和调查员",
+  "production": "生产",
+  "production-control": "生产控制",
+  "production-inspectors-testers-graders-sorters-and-samplers": "生产检查员、测试员、分级员、分拣员和取样员",
+  "production-planning": "生产计划",
+  "production-workers": "生产工人",
+  "professors-and-instructors": "教授和讲师",
+  "program-directors": "节目总监",
+  "project-management-specialists": "项目管理专员",
+  "protective-service": "安保服务",
+  "protective-service-trainees": "安保服务实习生",
+  "protective-service-workers": "安保服务人员",
+  "psychiatric-aides": "精神科护理员",
+  "psychiatric-technicians": "精神科学技术员",
+  "psychologists": "心理学家",
+  "public-relations-managers": "公关经理",
+  "public-relations-specialists": "公关专员",
+  "public-safety": "公共安全",
+  "purchasing-managers": "采购经理",
+  "purchasing-workers": "采购人员",
+  "quality-control": "质量控制",
+  "radiation-therapists": "放射治疗师",
+  "railroad-workers": "铁路工人",
+  "rail-yard-and-locomotive-workers": "铁路场站和机车工人",
+  "real-estate-brokers-and-sales-agents": "房地产经纪人和销售代理",
+  "receptionists-and-information-clerks": "接待员和信息文员",
+  "recreation-and-fitness": "娱乐和健身",
+  "recreation-workers": "娱乐工作者",
+  "recreational-therapists": "娱乐治疗师",
+  "recreational-vehicle-rental-workers": "休闲车租赁工作人员",
+  "recyclable-material-collectors": "可回收材料收集员",
+  "refractory-maintenance-repairers": "耐火材料维护修理人员",
+  "rehabilitation-counselors": "康复咨询师",
+  "reporters-and-journalists": "记者和新闻工作者",
+  "recreation-and-fitness-workers": "娱乐和健身工人",
+  "religious-activities-and-education": "宗教活动和教育",
+  "religious-workers": "宗教工作者",
+  "religious-workers-clergy": "宗教工作者-神职人员",
+  "reservation-and-transportation-ticket-agents-and-travel-clerks": "预订和交通票务代理及旅行文员",
+  "residential-advisors": "住宿顾问",
+  "restaurant-and-food-workers": "餐饮和食品工人",
+  "retail-sales-workers": "零售销售工人",
+  "retail-salespersons": "零售销售员",
+  "retail-sales-worker": "零售销售工人",
+  "retail-workers": "零售工人",
+  "rolling-machine-operators-and-tenders": "轧机操作员和看管员",
+  "roofers": "屋顶工",
+  "sales": "销售",
+  "sales-engineers": "销售工程师",
+  "sales-managers": "销售经理",
+  "sales-representatives": "销售代表",
+  "sales-workers": "销售人员",
+  "sawing-machine-setters-and-tenders": "锯床操作员和看管员",
+  "science-technicians": "科学技术员",
+  "scientists": "科学家",
+  "scientists-and-science-technicians": "科学家和科学技术员",
+  "screen-printers": "丝网印刷工",
+  "sealers-and-painters": "密封工和油漆工",
+  "secondary-school-teachers": "中学教师",
+  "secretaries-and-administrative-assistants": "秘书和行政助理",
+  "section-supervisors-and-construction-workers": "工段主管和建筑工人",
+  "section-supervisors": "工段主管",
+  "security-guards-and-gambling-surveillance-officers": "保安和赌博监控官员",
+  "segmental-pavers": "路面铺砌工",
+  "self-enrichment-teachers": "自我提升教师",
+  "sellng-occupations": "销售职业",
+  "service-workers": "服务人员",
+  "set-and-exhibit-designers": "布景和展览设计师",
+  "sewing-machine-operators": "缝纫机操作员",
+  "sheet-metal-workers": "钣金工",
+  "sheriffs": "治安官",
+  "shippers-and-receivers": "发货员和收货员",
+  "shipping-receiving-and-traffic-clerks": "发货、收货和运输文员",
+  "flooring-refinishers": "地板翻新工",
+  "singers-and-musicians": "歌手和音乐家",
+  "skincare-specialists": "护肤专家",
+  "soldiers": "士兵",
+  "sorters-and- grading-machine-operators": "分拣员和分级机操作员",
+  "special-education-teachers": "特殊教育教师",
+  "special-effects-artists-and-animators": "特效艺术家和动画师",
+  "speech-language-pathologists": "语言病理学家",
+  "sport-coaches": "体育教练",
+  "sports-competitors-and-athletes": "体育选手和运动员",
+  "spectator-sports": "观赏性体育",
+  "stationary-engineers-and-boiler-operators": "固定工程师和锅炉操作员",
+  "statisticians": "统计学家",
+  "stock-clerks-and-order-fillers": "仓库文员和订单处理员",
+  "stonemasons": "石匠",
+  "stonemasons-and- stone-cutters": "石匠和石材切割工",
+  "structure-metal-workers": "结构金属工人",
+  "substance-abuse-and-behavioral-disorder-counselors": "药物滥用和行为障碍咨询师",
+  "supermarket-and-grocery-store-workers": "超市和杂货店工人",
+  "survey-researchers": "调查研究人员",
+  "surveying-and-mapping-technicians": "测量和制图技术员",
+  "surveyors": "测量师",
+  "switchboard-operators": "接线员",
+  "tailors-and-dressmakers": "裁缝和女装裁缝",
+  "tank-car-truck-and-ship-loaders": "罐车、卡车和船舶装载工",
+  "tax-examiners-and-collectors-and-revenue-agents": "税务检查员、征收员和税务代理",
+  "teachers": "教师",
+  "teachers-and-instructors": "教师和讲师",
+  "teachers-and-instructors-educational-admin-and-library": "教师、讲师、教育管理员和图书馆员",
+  "team-assemblers": "团队装配工",
+  "technicians": "技术员",
+  "telemarketers": "电话推销员",
+  "telephone-operators": "话务员",
+  "textile-bleaching-and-dyeing-machine-operators": "纺织品漂染机操作员",
+  "textile-knitting-and-weaving-machine-operators": "纺织品针织和织造机操作员",
+  "textile-machine-operators": "纺织品机器操作员",
+  "theatrical-and-performance-makeup-artists": "戏剧和表演化妆艺术家",
+  "tile-and-marble-setters": "瓷砖和大理石铺设工",
+  "timing-device-assemblers-and-adjusters": "计时设备装配工和调试员",
+  "tool-and-die-makers": "工具和模具制造工",
+  "tool-grinders-and-sharpeners": "工具研磨和修磨工",
+  "tour-guides": "导游",
+  "tourism-and-hospitality": "旅游和酒店",
+  "trade-workers": "贸易工人",
+  "train-crew": "列车乘务组",
+  "train-operators-and-locomotive-engineers": "列车操作员和火车司机",
+  "transportation-and-material-moving": "运输和物料搬运",
+  "transportation-and-material-moving-equipment": "运输和物料搬运设备",
+  "transportation-and-material-moving-occupations": "运输和物料搬运职业",
+  "transportation-inspectors": "运输检查员",
+  "transportation-workers": "运输工人",
+  "travel-agents-and-services": "旅行代理和服务",
+  "travel-guides": "导游",
+  "truck-and-bus-drivers": "卡车和公交车司机",
+  "truck-transportation-and-moving": "卡车运输和搬运",
+  "truck-drivers-and-sales-workers": "卡车司机和销售工人",
+  "typesetters-and-compositors": "排版工和拼版工",
+  "typists-and-word-processors": "打字员和文字处理员",
+  "underground-mining": "地下采矿",
+  "uniformed-services": "制服服务",
+  "upholsterers": "家具装潢工",
+  "urban-and-regional-planners": "城市和区域规划师",
+  "usps-workers": "美国邮政服务工人",
+  "usps-mail-carriers": "美国邮政服务邮递员",
+  "usps-clerks": "美国邮政服务文员",
+  "vending-machine-repairers": "自动售货机修理人员",
+  "veterinarians": "兽医",
+  "veterinary-assistants-and-laboratory-animal-caretakers": "兽医助理和实验室动物护理员",
+  "vocational-education": "职业教育",
+  "vocational-rehabilitation-counselors": "职业康复咨询师",
+  "waiters-and-waitresses": "男女服务员",
+  "waiters-and-waitressess": "男女服务员",
+  "water-and-wastewater-treatment-plant-and-system-operators": "水和废水处理厂和系统操作员",
+  "web-developers": "Web开发人员",
+  "welders-cutters-solderers-and-brazers": "焊工、切割工、钎焊工和铜焊工",
+  "wellness-coordinators": "健康协调员",
+  "wholesale-and-manufacturing": "批发和制造",
+  "wholesale-and-retail-buyers": "批发和零售采购员",
+  "window-cleaners": "窗户清洁工",
+  "woodworkers": "木工",
+  "writers-and-authors": "作家和作者",
+  "writers-and-editors": "作家和编辑",
+  "writers-editors-and-journalists": "作家、编辑和记者",
+  "zoo-and-aquarium-workers": "动物园和水族馆工人",
+  "zoologists-and-wildlife-biologists": "动物学家和野生动物生物学家"
+};
+
+let currentLang = 'en';
+
+// Helper function to get localized occupation title
+function getOccupationTitle(occ, lang) {
+  return lang === 'zh' && occupationTranslations[occ.slug]
+    ? occupationTranslations[occ.slug]
+    : occ.title;
+}
 
 // ── Color scales ────────────────────────────────────────────────────────
 
@@ -439,6 +1455,7 @@ function worstAspect(row, rowSum, side, totalArea, availableExtent) {
 let data = [];
 let rects = [];
 let hovered = null;
+let highlightedRect = null;
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 let dpr = window.devicePixelRatio || 1;
@@ -473,18 +1490,21 @@ function draw() {
   ctx.fillRect(0, 0, canvas.width / dpr, canvas.height / dpr);
   for (const r of rects) {
     const isHovered = r === hovered;
+    const isHighlighted = r === highlightedRect;
     const g = GAP / 2, rx = r.rx + g, ry = r.ry + g, rw = r.rw - g * 2, rh = r.rh - g * 2;
     if (rw <= 0 || rh <= 0) continue;
-    ctx.fillStyle = tileColorCSS(r, isHovered ? 0.8 : 0.5);
+    ctx.fillStyle = tileColorCSS(r, isHovered ? 0.8 : (isHighlighted ? 0.9 : 0.5));
     ctx.fillRect(rx, ry, rw, rh);
     if (isHovered) { ctx.strokeStyle = "#fff"; ctx.lineWidth = 2; ctx.strokeRect(rx, ry, rw, rh); }
+    if (isHighlighted && !isHovered) { ctx.strokeStyle = "#ffd700"; ctx.lineWidth = 3; ctx.strokeRect(rx, ry, rw, rh); }
     if (rw > 50 && rh > 18) {
       ctx.save(); ctx.beginPath(); ctx.rect(rx + 4, ry + 2, rw - 8, rh - 4); ctx.clip();
       const fontSize = Math.min(13, Math.max(9, Math.min(rw / 10, rh / 3)));
       ctx.font = `500 ${fontSize}px -apple-system, system-ui, sans-serif`;
-      ctx.fillStyle = isHovered ? "#fff" : "rgba(255,255,255,0.85)";
+      ctx.fillStyle = isHovered || isHighlighted ? "#fff" : "rgba(255,255,255,0.85)";
       ctx.textBaseline = "top";
-      ctx.fillText(r.title, rx + 5, ry + 4);
+      const title = getOccupationTitle(r, currentLang);
+      ctx.fillText(title, rx + 5, ry + 4);
       if (rh > 34 && rw > 60) {
         ctx.font = `400 ${Math.max(8, fontSize - 2)}px -apple-system, system-ui, sans-serif`;
         ctx.fillStyle = "rgba(255,255,255,0.5)";
@@ -547,7 +1567,7 @@ function tooltipHighlight(d) {
 
 function showTooltip(d, mx, my) {
   const tt = document.getElementById("tooltip");
-  tt.querySelector(".tt-title").textContent = d.title;
+  tt.querySelector(".tt-title").textContent = getOccupationTitle(d, currentLang);
   tt.querySelector(".tt-exposure").innerHTML = tooltipHighlight(d);
   tt.querySelector(".tt-stats").innerHTML = `
     <span class="label">Median pay</span><span class="value">${formatPay(d.pay)}</span>
@@ -895,12 +1915,347 @@ document.getElementById("colorToggle").addEventListener("click", (e) => {
   requestAnimationFrame(resize);
 });
 
+// ── Localization ─────────────────────────────────────────────────────────
+
+function t(key) {
+  return i18n[currentLang][key] || key;
+}
+
+function updateLanguage() {
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    el.innerHTML = t(key);
+  });
+
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const key = el.getAttribute('data-i18n-placeholder');
+    el.placeholder = t(key);
+  });
+
+  // Re-render canvas with localized titles
+  draw();
+
+  // Update result panel if visible
+  const resultPanel = document.getElementById('resultPanel');
+  if (resultPanel.classList.contains('visible')) {
+    const savedSlug = resultPanel.getAttribute('data-slug');
+    if (savedSlug) {
+      const occ = data.find(o => o.slug === savedSlug);
+      if (occ) showResultPanel(occ);
+    }
+  }
+}
+
+document.getElementById('langEn').addEventListener('click', () => {
+  currentLang = 'en';
+  document.getElementById('langEn').classList.add('active');
+  document.getElementById('langZh').classList.remove('active');
+  updateLanguage();
+});
+
+document.getElementById('langZh').addEventListener('click', () => {
+  currentLang = 'zh';
+  document.getElementById('langZh').classList.add('active');
+  document.getElementById('langEn').classList.remove('active');
+  updateLanguage();
+});
+
+// ── Search and autocomplete ───────────────────────────────────────────────
+
+const searchInput = document.getElementById('searchInput');
+const autocompleteDropdown = document.getElementById('autocompleteDropdown');
+let filteredOccupations = [];
+let autocompleteIndex = -1;
+
+function fuzzyMatch(text, query) {
+  const t = text.toLowerCase();
+  const q = query.toLowerCase();
+  let ti = 0, qi = 0;
+  while (ti < t.length && qi < q.length) {
+    if (t[ti] === q[qi]) qi++;
+    ti++;
+  }
+  return qi === q.length;
+}
+
+function searchOccupations(query) {
+  if (!query) {
+    filteredOccupations = [];
+    return;
+  }
+
+  const q = query.toLowerCase().trim();
+  filteredOccupations = data.filter(occ => {
+    // Search in English title
+    const titleMatch = occ.title.toLowerCase().includes(q);
+
+    // Search in Chinese translation if available
+    const zhTitle = occupationTranslations[occ.slug] || '';
+    const zhMatch = zhTitle.toLowerCase().includes(q);
+
+    return titleMatch || zhMatch || fuzzyMatch(occ.title, q) || fuzzyMatch(zhTitle, q);
+  }).slice(0, 10);
+}
+
+function renderAutocomplete() {
+  if (filteredOccupations.length === 0) {
+    autocompleteDropdown.classList.remove('visible');
+    return;
+  }
+
+  autocompleteDropdown.innerHTML = filteredOccupations.map((occ, i) => `
+    <div class="autocomplete-item ${i === autocompleteIndex ? 'selected' : ''}" data-slug="${occ.slug}">
+      <div>${getOccupationTitle(occ, currentLang)}</div>
+      <div class="category">${categoryTranslations[occ.category]?.[currentLang] || occ.category}</div>
+    </div>
+  `).join('');
+
+  autocompleteDropdown.classList.add('visible');
+}
+
+function selectOccupation(occ) {
+  searchInput.value = getOccupationTitle(occ, currentLang);
+  autocompleteDropdown.classList.remove('visible');
+  autocompleteIndex = -1;
+
+  // Find and highlight the rectangle
+  highlightedRect = rects.find(r => r.slug === occ.slug) || null;
+  draw();
+
+  // Show result panel
+  showResultPanel(occ);
+}
+
+function showResultPanel(occ) {
+  const panel = document.getElementById('resultPanel');
+  panel.setAttribute('data-slug', occ.slug);
+
+  // Title
+  document.getElementById('resultTitle').textContent = getOccupationTitle(occ, currentLang);
+
+  // Outlook
+  const outlookEl = document.getElementById('resultOutlook');
+  const outlookBar = document.getElementById('resultOutlookBar');
+  const outlookDesc = document.getElementById('resultOutlookDesc');
+
+  if (occ.outlook != null) {
+    outlookEl.textContent = (occ.outlook > 0 ? '+' : '') + occ.outlook + '%';
+    outlookEl.style.color = outlookColor(occ.outlook, 1);
+    const barWidth = Math.max(0, Math.min(100, (occ.outlook + 10) / 30 * 100));
+    outlookBar.style.width = barWidth + '%';
+    outlookBar.style.background = outlookColor(occ.outlook, 0.8);
+    outlookDesc.textContent = occ.outlook_desc || '';
+  } else {
+    outlookEl.textContent = '—';
+    outlookBar.style.width = '0%';
+    outlookDesc.textContent = '';
+  }
+
+  // Pay
+  const payEl = document.getElementById('resultPay');
+  const payBar = document.getElementById('resultPayBar');
+
+  if (occ.pay != null) {
+    payEl.textContent = formatPay(occ.pay);
+    payEl.style.color = payColor(occ.pay, 1);
+    const barWidth = Math.max(0, Math.min(100, occ.pay / 150000 * 100));
+    payBar.style.width = barWidth + '%';
+    payBar.style.background = payColor(occ.pay, 0.8);
+  } else {
+    payEl.textContent = '—';
+    payBar.style.width = '0%';
+  }
+
+  // Education
+  const eduEl = document.getElementById('resultEducation');
+  eduEl.textContent = occ.education || '—';
+
+  // Exposure
+  const expEl = document.getElementById('resultExposure');
+  const expBar = document.getElementById('resultExposureBar');
+  const rationaleEl = document.getElementById('resultRationale');
+
+  if (occ.exposure != null) {
+    expEl.textContent = occ.exposure + '/10';
+    expEl.style.color = exposureColor(occ.exposure, 1);
+    expBar.style.width = (occ.exposure * 10) + '%';
+    expBar.style.background = exposureColor(occ.exposure, 0.8);
+    rationaleEl.textContent = occ.exposure_rationale || '';
+  } else {
+    expEl.textContent = '—';
+    expBar.style.width = '0%';
+    rationaleEl.textContent = '';
+  }
+
+  // Employment
+  const empEl = document.getElementById('resultEmployment');
+  if (occ.jobs != null) {
+    empEl.textContent = formatNumber(occ.jobs) + ' jobs';
+  } else {
+    empEl.textContent = '—';
+  }
+
+  // Ensure panel is in full size (not minimized) when showing new occupation
+  panel.classList.remove('minimized');
+  panel.classList.add('visible');
+}
+
+// ── Minimize/Restore Panel ──────────────────────────────────────────────────
+function toggleMinimize() {
+  const panel = document.getElementById('resultPanel');
+  panel.classList.toggle('minimized');
+}
+
+// Click on minimized panel to restore
+document.getElementById('resultPanel').addEventListener('click', (e) => {
+  if (e.target.closest('.result-panel-minimize')) return;
+  if (e.currentTarget.classList.contains('minimized')) {
+    toggleMinimize();
+  }
+});
+
+document.getElementById('resultMinimize').addEventListener('click', (e) => {
+  e.stopPropagation();
+  toggleMinimize();
+});
+
+// ── Draggable Panel ─────────────────────────────────────────────────────────
+function initDraggable() {
+  const panel = document.getElementById('resultPanel');
+  const handle = document.getElementById('resultDragHandle');
+
+  let isDragging = false;
+  let startX, startY;
+  let startLeft, startTop;
+
+  // Load saved position (only on desktop)
+  const savedPos = localStorage.getItem('resultPanelPosition');
+  if (savedPos && window.innerWidth >= 768) {
+    const pos = JSON.parse(savedPos);
+    panel.style.left = pos.left;
+    panel.style.top = pos.top;
+    panel.style.right = 'auto';
+  }
+
+  // Clear saved position if on mobile to let CSS take over
+  if (window.innerWidth < 768) {
+    panel.style.left = '';
+    panel.style.top = '';
+    panel.style.right = '';
+  }
+
+  handle.addEventListener('mousedown', (e) => {
+    if (window.innerWidth < 768) return; // Disabled on mobile
+
+    isDragging = true;
+    panel.classList.add('dragging');
+
+    startX = e.clientX;
+    startY = e.clientY;
+
+    const rect = panel.getBoundingClientRect();
+    startLeft = rect.left;
+    startTop = rect.top;
+
+    e.preventDefault();
+  });
+
+  document.addEventListener('mousemove', (e) => {
+    if (!isDragging) return;
+
+    const dx = e.clientX - startX;
+    const dy = e.clientY - startY;
+
+    let newLeft = startLeft + dx;
+    let newTop = startTop + dy;
+
+    // Keep panel within viewport bounds
+    const maxLeft = window.innerWidth - panel.offsetWidth - 20;
+    const maxTop = window.innerHeight - panel.offsetHeight - 20;
+
+    newLeft = Math.max(20, Math.min(newLeft, maxLeft));
+    newTop = Math.max(20, Math.min(newTop, maxTop));
+
+    panel.style.left = newLeft + 'px';
+    panel.style.top = newTop + 'px';
+    panel.style.right = 'auto';
+  });
+
+  document.addEventListener('mouseup', () => {
+    if (isDragging) {
+      isDragging = false;
+      panel.classList.remove('dragging');
+
+      // Save position to localStorage
+      const pos = {
+        left: panel.style.left,
+        top: panel.style.top
+      };
+      localStorage.setItem('resultPanelPosition', JSON.stringify(pos));
+    }
+  });
+}
+
+// Initialize draggable after DOM is ready
+initDraggable();
+
+searchInput.addEventListener('input', () => {
+  autocompleteIndex = -1;
+  searchOccupations(searchInput.value);
+  renderAutocomplete();
+});
+
+searchInput.addEventListener('keydown', (e) => {
+  if (filteredOccupations.length === 0) return;
+
+  if (e.key === 'ArrowDown') {
+    e.preventDefault();
+    autocompleteIndex = Math.min(autocompleteIndex + 1, filteredOccupations.length - 1);
+    renderAutocomplete();
+  } else if (e.key === 'ArrowUp') {
+    e.preventDefault();
+    autocompleteIndex = Math.max(autocompleteIndex - 1, -1);
+    renderAutocomplete();
+  } else if (e.key === 'Enter' && autocompleteIndex >= 0) {
+    e.preventDefault();
+    selectOccupation(filteredOccupations[autocompleteIndex]);
+  } else if (e.key === 'Escape') {
+    autocompleteDropdown.classList.remove('visible');
+    autocompleteIndex = -1;
+  }
+});
+
+autocompleteDropdown.addEventListener('click', (e) => {
+  const item = e.target.closest('.autocomplete-item');
+  if (item) {
+    const slug = item.getAttribute('data-slug');
+    const occ = data.find(o => o.slug === slug);
+    if (occ) selectOccupation(occ);
+  }
+});
+
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('.search-input-wrapper')) {
+    autocompleteDropdown.classList.remove('visible');
+  }
+});
+
+document.getElementById('resultClose').addEventListener('click', () => {
+  const panel = document.getElementById('resultPanel');
+  panel.classList.remove('visible');
+  panel.classList.remove('minimized');
+  localStorage.removeItem('resultPanelPosition');
+  highlightedRect = null;
+  draw();
+});
+
 // ── Load ───────────────────────────────────────────────────────────────
 
 fetch("data.json")
   .then(r => r.json())
   .then(d => {
     data = d;
+    updateLanguage();
     updateStats();
     drawGradientLegend();
     resize();
