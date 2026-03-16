@@ -1,17 +1,13 @@
 # 美国就业市场可视化工具
 
-一个用于可视化探索美国劳工统计局[职业展望手册](https://www.bls.gov/ooh/)数据的研究工具。
+本项目是 [Andrej Karpathy 原始项目](https://github.com/karpathy/jobs) 的修改版本，作为用于可视化探索美国劳工统计局[职业展望手册](https://www.bls.gov/ooh/)数据的研究工具。
 
-本项目是 [Andrej Karpathy 原始项目](https://github.com/karpathy/jobs) 的修改版本。
-
-**[English README](README.md)** | **在线演示：[karpathy.ai/jobs](https://karpathy.ai/jobs/)**
+**[English README](README.md)** | **在线演示：[karpathy.ai/jobs](https://jobs-w-search.vercel.app/)**
 
 ## 与 Karpathy 原版的主要区别
 
 - **双语支持** — 英文/中文语言切换，包含全部 342 个职业和类别的中文翻译
 - **职业搜索** — 带自动补全功能的搜索框，支持中英文快速查找职业
-- **查询页面** — 新增 `lookup.html` 独立页面，专门用于职业搜索和按类别浏览
-- **搜索修复** — 改进了搜索匹配逻辑（移除了过于宽松的模糊匹配）
 
 ## 项目内容
 
