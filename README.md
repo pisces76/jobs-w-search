@@ -1,8 +1,17 @@
 # US Job Market Visualizer
 
-A research tool for visually exploring Bureau of Labor Statistics [Occupational Outlook Handbook](https://www.bls.gov/ooh/) data. This is not a report, a paper, or a serious economic publication — it is a development tool for exploring BLS data visually.
+A research tool for visually exploring Bureau of Labor Statistics [Occupational Outlook Handbook](https://www.bls.gov/ooh/) data.
 
-**Live demo: [karpathy.ai/jobs](https://karpathy.ai/jobs/)**
+This is a fork of [Andrej Karpathy's original project](https://github.com/karpathy/jobs).
+
+**[中文文档](README_CN.md)** | **Live demo: [karpathy.ai/jobs](https://karpathy.ai/jobs/)**
+
+## What's different from Karpathy's version
+
+- **Bilingual support** — English/Chinese language toggle with translations for all 342 occupations and categories
+- **Occupation search** — Autocomplete search box to quickly find occupations by name (in English or Chinese)
+- **Lookup page** — Separate `lookup.html` page for dedicated occupation search and browsing by category
+- **Search fix** — Improved search matching logic (removed overly permissive fuzzy match)
 
 ## What's here
 
