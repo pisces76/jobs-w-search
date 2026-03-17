@@ -2,7 +2,7 @@
 
 This is a fork of [Andrej Karpathy's original project](https://github.com/karpathy/jobs). A research tool for visually exploring Bureau of Labor Statistics [Occupational Outlook Handbook](https://www.bls.gov/ooh/) data.
 
-**[中文文档](README_CN.md)** | **Live demo: [karpathy.ai/jobs](https://jobs-w-search.vercel.app/)**
+**[中文文档](README_CN.md)** | **Live demo: [https://jobs-w-search.vercel.app/](https://jobs-w-search.vercel.app/)**
 
 ## What's different from Karpathy's version
 

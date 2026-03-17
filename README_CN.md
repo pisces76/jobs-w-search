@@ -2,7 +2,7 @@
 
 本项目是 [Andrej Karpathy 原始项目](https://github.com/karpathy/jobs) 的修改版本，作为用于可视化探索美国劳工统计局[职业展望手册](https://www.bls.gov/ooh/)数据的研究工具。
 
-**[English README](README.md)** | **在线演示：[karpathy.ai/jobs](https://jobs-w-search.vercel.app/)**
+**[English README](README.md)** | **在线演示：[https://jobs-w-search.vercel.app/](https://jobs-w-search.vercel.app/)**
 
 ## 与 Karpathy 原版的主要区别
 
